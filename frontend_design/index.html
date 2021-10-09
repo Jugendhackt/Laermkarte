@@ -11,10 +11,18 @@
    <style>
       #map { height: 600px; width: 1000px} 
    </style>
+   <style>
+      body {
+        background-color: rgb(138, 255, 235);
+      }
+   </style>
 </head>
 <body>
     <h1>Laermkarte
     </h1>
+    <h2>
+      der beste projekt
+    </h2>
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
@@ -25,7 +33,7 @@
     <script>// don't forget to include leaflet-heatmap.js
       var testData = {
         max: 19,
-        data: [{lat: 24.6408, lng:46.7728, count: 3},{lat: 50.75, lng:-1.55, count: 1}]
+        data: [{lat: 52.5200, lng: 13.4050, count: 13},{lat: 50.75, lng:-1.55, count: 1}]
       };
       
       var baseLayer = L.tileLayer(
