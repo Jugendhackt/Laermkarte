@@ -94,5 +94,21 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
+var sensorData 
 
+app.post('/laermliste', (req, res) => {
+  sensorData = req.body.map(item => {
+    return {
+      lat: item.location.latitude, 
+      long: item.location.longitude,
+      count: item.location.volume
+    }
+  })
+})
 
+app.get('/sensorData', (req, res) => {
+  if (sensorData){
+    return res.json(sensorData).send()
+  } 
+  return res.status(404).send()
+})
