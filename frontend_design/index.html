@@ -40,16 +40,17 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.js"></script>
     <script src="leaflet-heatmap.js"></script>
-    <script src="client.js"></script>
-    <script>// don't forget to include leaflet-heatmap.js
+    <script type="module">// don't forget to include leaflet-heatmap.js
+    let response = await fetch('http://127.0.0.1:5000/laermliste');
+    let data = await response.json();
       var testData = {
         max: 19,
-        data: [{lat:52.5170365, lng:13.3888599, count: 13},{lat: 52.5200, lng:13.3888599, count: 13}]
+        data: data
       };
-      
+
       var baseLayer = L.tileLayer(
         'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
           maxZoom: 19,
@@ -60,7 +61,7 @@
       var cfg = {
         // radius should be small ONLY if scaleRadius is true (or small radius is intended)
         // if scaleRadius is false it will be the constant radius used in pixels
-        "radius": 0.005,
+        "radius": 0.05,
         "maxOpacity": 0.5,
         // scales the radius based on map zoom
         "scaleRadius": true,
@@ -90,7 +91,9 @@
     .bindPopup('Hauptstadt:  Berlin')
     .openPopup();
 
-      heatmapLayer.setData(testData);
+
+      console.log(window.larmliste,'test')
+        heatmapLayer.setData(testData);
       heatmapLayer.addTo(map);
       </script>
     <!--script>
@@ -100,5 +103,6 @@
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
       }).addTo(mymap);
     </script-->
+
 </body>
 </html>
