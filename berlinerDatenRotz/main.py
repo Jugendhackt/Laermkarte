@@ -77,7 +77,7 @@ y = 60
 class FancyBar(Bar):
     suffix = '%(percent).1f%% - %(eta)ds'
 
-bar = FancyBar('Fetching', max=x*y)
+bar = FancyBar('Fetching', max=x*y*0.67)
 
 for x in range(x):
     for y in range(y):
