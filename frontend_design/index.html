@@ -41,13 +41,17 @@
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
 
+    <script src="client.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.js"></script>
     <script src="leaflet-heatmap.js"></script>
-    <script src="client.js"></script>
     <script>// don't forget to include leaflet-heatmap.js
       var testData = {
         max: 19,
-        data: window.larmliste.then(res => {return res})
+        data: await window.larmliste.then(res => {
+          console.log(res);
+          return res;
+        })
+        // data: [{"lat":52.532265,"lng":13.343671,"count":13},{"lat":52.515918,"lng":13.294888,"count":13},{"lat":52.53276,"lng":13.343803,"count":13},{"lat":53.515918,"lng":13.292768,"count":13},{"lat":52.532265,"lng":13.343671,"count":13},{"lat":52.515918,"lng":14.227439,"count":13},{"lat":52.992265,"lng":13.340271,"count":13},{"lat":52.515678,"lng":13.203888,"count":13}]
       };
 
       var baseLayer = L.tileLayer(
@@ -60,7 +64,7 @@
       var cfg = {
         // radius should be small ONLY if scaleRadius is true (or small radius is intended)
         // if scaleRadius is false it will be the constant radius used in pixels
-        "radius": 0.005,
+        "radius": 0.05,
         "maxOpacity": 0.5,
         // scales the radius based on map zoom
         "scaleRadius": true,
@@ -90,11 +94,12 @@
     .bindPopup('Hauptstadt:  Berlin')
     .openPopup();
 
-      heatmapLayer.setData(testData);
-      heatmapLayer.addTo(map);
+
       console.log(window.larmliste,'test')
       window.larmliste.then(data => {
-        console.log(data)
+        console.log(data);
+        heatmapLayer.setData(testData);
+      heatmapLayer.addTo(map);
       })
       </script>
     <!--script>

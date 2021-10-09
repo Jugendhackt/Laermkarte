@@ -17,7 +17,7 @@ const fakedataliste = [
   },
   {
     "long" : "52.515918",
-    "lat" : " 13.294888",
+    "lat" : "13.294888",
     "lautstaerke" :"66",
   },
   {
@@ -27,8 +27,8 @@ const fakedataliste = [
   },
   {
     "long" : "53.515918",
-    "lat" : " 13.292768",
-    "lautstaerke" :"50",
+    "lat" : "13.292768",
+    "lautstaerke":"50",
   },
   {
     "long" : "52.532265",
@@ -84,8 +84,8 @@ app.get('/faked', (req, res) => {
 
 app.get('/laermliste', (req, res) => {
   res.send(fakedataliste.map(item => {
-    return {lat: Number.parseFloat(item.lat) ,
-    lng: Number.parseFloat(item.long),
+    return {lat: Number.parseFloat(item.long) ,
+    lng: Number.parseFloat(item.lat),
     count: 13}
   }))
 })
