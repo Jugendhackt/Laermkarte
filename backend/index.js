@@ -83,7 +83,11 @@ app.get('/faked', (req, res) => {
 })
 
 app.get('/laermliste', (req, res) => {
-  res.send(fakedataliste)
+  res.send(fakedataliste.map(item => {
+    return {lat: Number.parseFloat(item.lat) ,
+    lng: Number.parseFloat(item.long),
+    count: 13}
+  }))
 })
 
 app.listen(port, () => {

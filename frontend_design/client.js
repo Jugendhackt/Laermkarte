@@ -1,11 +1,8 @@
-theUrl = 'http://localhost:5000/laermliste'
-a = httpGet(theUrl)
-console.log(a)
 
-
-
-
-
+theUrl = 'http://127.0.0.1:5000/laermliste'
+window.larmliste = new Promise(res => {
+    return res(httpGet(theUrl))
+})  
 function httpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
