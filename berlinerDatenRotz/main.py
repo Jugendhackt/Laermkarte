@@ -77,7 +77,7 @@ y = 60
 class FancyBar(Bar):
     suffix = '%(percent).1f%% - %(eta)ds'
 
-bar = FancyBar('Fetching', max=2400)
+bar = FancyBar('Fetching', max=x*y)
 
 for x in range(x):
     for y in range(y):
@@ -93,10 +93,6 @@ for x in range(x):
         bar.next()
 bar.finish()
 
-
-with open('result.json', 'w') as fp:
-    json.dump(dbDict, fp)
-
 string = "["
 for key in dbDict.keys():
     string = string + "{"+"lat: {}, lng: {}, count: {}".format(key[0], key[1], dbDict[key])+"},"
@@ -108,5 +104,8 @@ string = string + "]"
 
 with open("Output.txt", "w") as text_file:
     text_file.write(string)
+
+with open('result.json', 'w') as fp:
+    json.dump(dbDict, fp)
 
 print (string)
