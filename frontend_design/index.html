@@ -9,21 +9,32 @@
    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
    crossorigin=""/>
    <style>
-      #map { height: 600px; width: 1000px; margin: 0 auto;} 
+      #map { height: 55vh; width: 65vw; margin: 0 auto;} 
    </style>
    <style>
       body {
         background-color: rgb(138, 255, 235);
-        font-family: Courier New;
+        font-family: Courier Black;
         text-align:center;
+
+      }
+      h1 {
+        font-size: 75px;
+        background-color: rgb(255, 255, 255);
+      }
+      h2 {
+        font-size: 37px;
+        font-family: Arial;
+        font-weight: 600;
+        color: rgb(71, 71, 71);
       }
    </style>
 </head>
 <body>
-    <h1>Lärmkarte
+    <h1>L ä r m K a r t e 
     </h1>
     <h2>
-      Das beste Projekt 
+      Projekt
     </h2>
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
@@ -32,10 +43,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.js"></script>
     <script src="leaflet-heatmap.js"></script>
+    <script src="client.js"></script>
     <script>// don't forget to include leaflet-heatmap.js
       var testData = {
         max: 19,
-        data: [{lat: 52.5200, lng: 13.4050, count: 13},{lat: 50.75, lng:-1.55, count: 1}]
+        data: [{lat:52.5170365, lng:13.3888599, count: 13},{lat: 50.75, lng:-1.55, count: 1}]
       };
       
       var baseLayer = L.tileLayer(
@@ -48,8 +60,8 @@
       var cfg = {
         // radius should be small ONLY if scaleRadius is true (or small radius is intended)
         // if scaleRadius is false it will be the constant radius used in pixels
-        "radius": 2,
-        "maxOpacity": .8,
+        "radius": 0.005,
+        "maxOpacity": 0.5,
         // scales the radius based on map zoom
         "scaleRadius": true,
         // if set to false the heatmap uses the global maximum for colorization
@@ -67,9 +79,17 @@
       
       var heatmapLayer = new HeatmapOverlay(cfg);
       
-      var map = new L.Map('map').setView([52.5200, 13.4050], 13);;
-      baseLayer.addTo(map);
-      
+      var map = new L.Map('map').setView([52.5170365, 13.3888599], 13);;
+      baseLayer.addTo(map)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+      }).addTo(map);
+
+      L.marker([52.5170365, 13.3888599]).addTo(map)
+    .bindPopup('Hauptstadt:  Berlin')
+    .openPopup();
+
       heatmapLayer.setData(testData);
       heatmapLayer.addTo(map);
       </script>

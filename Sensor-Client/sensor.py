@@ -34,9 +34,10 @@ def audio_callback(indata, frames, time, status):
 
 
 CF = calibration(1, 44100)
-with sd.InputStream(callback=audio_callback, blocksize=10000, samplerate=44100, dtype='float32'):
-    while True:
+
+
+def getDB():
+    with sd.InputStream(callback=audio_callback, blocksize=10000, samplerate=44100, dtype='float32'):
         data = q.get() / CF
         original = 20 * np.log10(rms_flat(data) / 2e-5)  # referencing 2e-5 Pa
-        print('{:+.2f} dB'.format(original))
-        ts = calendar.timegm(time.gmtime())
+        return '{:+.2f} dB'.format(original)

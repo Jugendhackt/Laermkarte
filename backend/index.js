@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 5000
-
+const cors = require('cors')
 const fakedata = {
   "location" : "52.532265, 13.343671",
   
@@ -69,7 +69,11 @@ const fakedata1 = {
 
  "Datum" : "09/10/21",
 }
-
+app.use(
+  cors({
+    origin: '*'
+  })
+)
 app.get('/', (req, res) => {
   res.send('Hello Alpakas!')
 })
