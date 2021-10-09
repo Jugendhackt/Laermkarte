@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime
 
-import sensor
+
 
 id = 1
 time = datetime.now(tz=None).strftime("%Y-%m-%d %H:%M")
