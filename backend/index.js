@@ -87,7 +87,4 @@ app.listen(port, () => {
 })
 
 
-function SagHallo (Name){
- console.log (Name) 
-}
-SagHallo('Neele')
+
