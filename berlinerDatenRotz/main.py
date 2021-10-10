@@ -68,13 +68,13 @@ def translateToDB(var):
         return 75
 
 
-startValueX = 52.540751
-startValueY = 13.332605
+startValueX = 52.411607
+startValueY = 13.206281
 
 dbDict = {}
 
-xMax = 1
-yMax = 1
+xMax = 100
+yMax = 100
 
 class FancyBar(Bar):
     suffix = '%(percent).1f%% - %(eta)ds'
