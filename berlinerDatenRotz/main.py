@@ -71,16 +71,16 @@ startValueY = 13.262662
 
 dbDict = {}
 
-x = 40
-y = 60
+xMax = 40
+yMax = 60
 
 class FancyBar(Bar):
     suffix = '%(percent).1f%% - %(eta)ds'
 
-bar = FancyBar('Fetching', max=x*y*0.67)
+bar = FancyBar('Fetching', max=xMax*yMax)
 
-for x in range(x):
-    for y in range(y):
+for x in range(xMax):
+    for y in range(yMax):
         data = getBoxData(startValueX+x*0.004, startValueY+y*0.004)
         i = 0
         xStart = startValueX+0.004+x*0.004
