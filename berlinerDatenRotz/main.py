@@ -53,7 +53,7 @@ def getBoxData(x, y):
 
 def translateToDB(var):
     if var == "255255255":
-        return 50
+        return 0
     elif var == "255099054":
         return 58
     elif var == "199023018":
