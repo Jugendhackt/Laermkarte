@@ -41,7 +41,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.js"></script>
     <script src="leaflet-heatmap.js"></script>
     <script type="module">// don't forget to include leaflet-heatmap.js
-    let response = await fetch('http://127.0.0.1:5000/sensordata');
+    let response = await fetch('http://49.12.196.133:5000/sensordata');
     let data = await response.json();
       var testData = {
         max: 19,
@@ -58,7 +58,7 @@
       var cfg = {
         // radius should be small ONLY if scaleRadius is true (or small radius is intended)
         // if scaleRadius is false it will be the constant radius used in pixels
-        "radius": 0.0006,
+        "radius": 0.6,
         "maxOpacity": 0.5,
         // scales the radius based on map zoom
         "scaleRadius": true,
@@ -76,7 +76,6 @@
       
       
       var heatmapLayer = new HeatmapOverlay(cfg);
-      
       var map = new L.Map('map').setView([52.5170365, 13.3888599], 13);;
       baseLayer.addTo(map)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -90,7 +89,7 @@
 
 
       console.log(window.larmliste,'test')
-        heatmapLayer.setData(testData);
+      heatmapLayer.setData(testData);
       heatmapLayer.addTo(map);
       </script>
 
