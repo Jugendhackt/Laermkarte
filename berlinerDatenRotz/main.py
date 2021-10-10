@@ -14,10 +14,11 @@ def getBoxData(x, y):
     myimg = cv2.imread('image.png')
 
     imgSlices = []
+    imgSize = 16
 
-    for x in range(4):
-        for y in range(4):
-            imgSlices.append(myimg[x*32:x*32+32, y*32:y*32+32])
+    for x in range(8):
+        for y in range(8):
+            imgSlices.append(myimg[x*imgSize:x*imgSize+imgSize, y*imgSize:y*imgSize+imgSize])
 
     # finalSize = 16
     # 128 pixels each
@@ -26,7 +27,7 @@ def getBoxData(x, y):
     resultArray = []
 
 
-    for i in range(16):
+    for i in range(64):
         count = {}
         for x in imgSlices[i]:
             for y in x:
@@ -36,7 +37,7 @@ def getBoxData(x, y):
                 else:
                     count[key] = 1
         #count.pop(0)
-        countedPixels = 1024 # sum(count.values())
+        countedPixels = 256 # sum(count.values())
         result = 0.0
         for x in count.keys():
             result += x * (count[x] / countedPixels)
@@ -85,10 +86,10 @@ for x in range(xMax):
         i = 0
         xStart = startValueX+0.004+x*0.004
         yStart = startValueY+y*0.004
-        for xi in range(4):
-            xStart = xStart - 0.001
-            for yi in range(4):
-                dbDict[(xStart,yStart+yi*0.001)] = data[i]
+        for xi in range(8):
+            xStart = xStart - 0.0005
+            for yi in range(8):
+                dbDict[(xStart,yStart+yi*0.0005)] = data[i]
                 i = i+1
         bar.next()
 bar.finish()
