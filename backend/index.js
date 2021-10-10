@@ -104,16 +104,21 @@ app.listen(port, () => {
 var sensorData 
 
 app.post('/sensordata', (req, res) => {
-  sensorData = {
-    "lat": req.body.location.latitude,
-    "long": req.body.location.longitude,
-    "count": req.body.value
-  }
+  console.log("lol")
+  console.log(req.body)
+  sensorData = [{
+    "lat": req.body.lat,
+    "lng": req.body.long,
+    "count": req.body.count
+  }]
+  console.log(sensorData)
 })
 
 app.get('/sensordata', (req, res) => {
   if (sensorData){
     return res.json(sensorData).send()
+  }
+  else {
+    return []
   } 
-  return res.status(404).send()
 })
