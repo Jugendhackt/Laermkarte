@@ -112,5 +112,3 @@ for key in dbDict.keys():
 
 with open('result.json', 'w') as fp:
     json.dump(list, fp)
-
-print (string)
