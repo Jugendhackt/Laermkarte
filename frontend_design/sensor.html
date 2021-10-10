@@ -27,16 +27,12 @@
         top:0;
         right:0;
       }
-      a {
-        font-family: 'Courier New', Courier, monospace;
-        background-color: rgb(255, 115, 115);
-      }
    </style>
 </head>
 <body>
     <h1>L ä r m K a r t e 
     </h1>
-    <a href="/frontend_design/sensor.html" role="button">Druecken um die quellen zu wechseln</a> 
+    <a href="/frontend_design/index.html" role="button">druecken um die quellen zu wechseln</a>
     <div id="map"></div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
@@ -45,7 +41,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.js"></script>
     <script src="leaflet-heatmap.js"></script>
     <script type="module">// don't forget to include leaflet-heatmap.js
-    let response = await fetch('http://127.0.0.1:5000/laermliste');
+    let response = await fetch('http://127.0.0.1:5000/sensordata');
     let data = await response.json();
       var testData = {
         max: 19,

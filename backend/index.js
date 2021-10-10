@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+app.use(express.json())
 const port = 5000
 const cors = require('cors')
 const fs = require('fs')
@@ -100,5 +101,19 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
+var sensorData 
 
+app.post('/sensordata', (req, res) => {
+  sensorData = {
+    "lat": req.body.location.latitude,
+    "long": req.body.location.longitude,
+    "count": req.body.value
+  }
+})
 
+app.get('/sensordata', (req, res) => {
+  if (sensorData){
+    return res.json(sensorData).send()
+  } 
+  return res.status(404).send()
+})
