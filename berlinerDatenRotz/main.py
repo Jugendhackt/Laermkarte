@@ -105,7 +105,12 @@ string = string + "]"
 with open("Output.txt", "w") as text_file:
     text_file.write(string)
 
+list = []
+
+for key in dbDict.keys():
+    list.append({"lat": key[0], "lng": key[1], "count": dbDict[key]})
+
 with open('result.json', 'w') as fp:
-    json.dump(dbDict, fp)
+    json.dump(list, fp)
 
 print (string)
