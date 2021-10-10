@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+app.use(express.json())
 const port = 5000
 const cors = require('cors')
 const fakedata = {
@@ -96,17 +97,15 @@ app.listen(port, () => {
 
 var sensorData 
 
-app.post('/laermliste', (req, res) => {
-  sensorData = req.body.map(item => {
-    return {
-      lat: item.location.latitude, 
-      long: item.location.longitude,
-      count: item.location.volume
-    }
-  })
+app.post('/sensordata', (req, res) => {
+  sensorData = {
+    "lat": req.body.location.latitude,
+    "long": req.body.location.longitude,
+    "count": req.body.value
+  }
 })
 
-app.get('/sensorData', (req, res) => {
+app.get('/sensordata', (req, res) => {
   if (sensorData){
     return res.json(sensorData).send()
   } 

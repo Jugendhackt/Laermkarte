@@ -11,8 +11,8 @@ long = 13
 val = sensor.get_current_decibels()
 var = {"identity": id, "timestamp": time, "location": {"latitude": lat, "longitude": long},
         "value": val}
+headers = {'Content-type': 'application/json'}
+r = requests.post("http://127.0.0.1:5000/sensordata", json.dumps(var), headers=headers)
 
-r = requests.post("http://127.0.0.1:5000/", var)
-
-print(var)
+#print(var)
 #print(r.text)
