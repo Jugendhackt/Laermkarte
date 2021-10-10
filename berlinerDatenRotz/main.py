@@ -3,11 +3,12 @@ import requests, cv2, numpy, math, json, time
 from progress.bar import Bar
 
 def getBoxData(x, y):
-    try:
-        r = requests.get('https://fbinter.stadt-berlin.de/fb/wms/senstadt/wmsk_07_05_01str_vbusDEN?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&CACHEID=888282&LAYERS=1&WIDTH=128&HEIGHT=128&CRS=EPSG:4326&STYLES=&BBOX={}, {}, {}, {}'.format(x, y, x+0.004, y+0.004))
-    except requests.exceptions.ConnectionError:
-        time.sleep(30.0)
-        r = requests.get('https://fbinter.stadt-berlin.de/fb/wms/senstadt/wmsk_07_05_01str_vbusDEN?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&CACHEID=888282&LAYERS=1&WIDTH=128&HEIGHT=128&CRS=EPSG:4326&STYLES=&BBOX={}, {}, {}, {}'.format(x, y, x+0.004, y+0.004))
+    while True:
+        try:
+            r = requests.get('https://fbinter.stadt-berlin.de/fb/wms/senstadt/wmsk_07_05_01str_vbusDEN?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&FORMAT=image/png&TRANSPARENT=true&CACHEID=888282&LAYERS=1&WIDTH=128&HEIGHT=128&CRS=EPSG:4326&STYLES=&BBOX={}, {}, {}, {}'.format(x, y, x+0.004, y+0.004))
+            break
+        except requests.exceptions.ConnectionError:
+            time.sleep(30.0)
     with open(r'image.png','wb') as f:
         f.write(r.content)
 
@@ -111,5 +112,5 @@ list = []
 for key in dbDict.keys():
     list.append({"lat": key[0], "lng": key[1], "count": dbDict[key]})
 
-with open('result.json', 'w') as fp:
+with open('../backend/result.json', 'w') as fp:
     json.dump(list, fp)
