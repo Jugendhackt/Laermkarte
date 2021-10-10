@@ -2,6 +2,11 @@ const express = require('express')
 const app = express()
 const port = 5000
 const cors = require('cors')
+const fs = require('fs')
+
+let rawdata = JSON.parse(fs.readFileSync('result.json'))
+
+
 const fakedata = {
   "location" : "52.532265, 13.343671",
   
@@ -83,11 +88,12 @@ app.get('/faked', (req, res) => {
 })
 
 app.get('/laermliste', (req, res) => {
-  res.send(fakedataliste.map(item => {
+  /*res.send(fakedataliste.map(item => {
     return {lat: Number.parseFloat(item.long) ,
     lng: Number.parseFloat(item.lat),
     count: 13}
-  }))
+  }))*/
+  res.send(rawdata)
 })
 
 app.listen(port, () => {
